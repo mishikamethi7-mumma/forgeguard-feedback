@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ForgeGuard AI | Feedback</title>
+<style>
+:root{
+  --bg:#03050a; --panel:#0a101b; --cyan:#00eaff; --blue:#147cff;
+  --text:#f4fbff; --muted:#9bb0c4; --line:#173047;
+}
+*{box-sizing:border-box}
+body{
+  margin:0; min-height:100vh; font-family:Arial,Helvetica,sans-serif;
+  background:
+    radial-gradient(circle at 15% 10%,rgba(0,234,255,.13),transparent 28%),
+    radial-gradient(circle at 85% 80%,rgba(20,124,255,.16),transparent 30%),
+    var(--bg); color:var(--text); padding:24px;
+}
+.container{max-width:850px;margin:auto}
+.header{text-align:center;padding:24px 10px 18px}
+.badge{
+ display:inline-block;border:1px solid rgba(0,234,255,.5);color:var(--cyan);
+ padding:7px 14px;border-radius:999px;font-size:12px;letter-spacing:2px;
+ text-transform:uppercase;box-shadow:0 0 18px rgba(0,234,255,.12)
+}
+h1{font-size:clamp(38px,8vw,68px);margin:16px 0 6px;letter-spacing:3px}
+h1 span{color:var(--cyan);text-shadow:0 0 25px rgba(0,234,255,.35)}
+.subtitle{color:var(--muted);font-size:16px;line-height:1.6}
+.card{
+ background:linear-gradient(145deg,rgba(10,16,27,.96),rgba(5,10,18,.96));
+ border:1px solid var(--line); border-radius:24px; padding:28px;
+ box-shadow:0 18px 55px rgba(0,0,0,.4),0 0 30px rgba(0,234,255,.05);
+ margin-top:18px
+}
+.question{margin:0 0 25px}
+.question h2{font-size:18px;margin:0 0 14px}
+.options{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:10px}
+.option{
+ cursor:pointer; user-select:none; padding:14px 12px; text-align:center;
+ border:1px solid #1c3448;border-radius:14px;background:#08101a;
+ color:#cbd9e4; transition:.2s;font-size:14px
+}
+.option:hover{border-color:var(--cyan);transform:translateY(-2px)}
+.option.selected{
+ border-color:var(--cyan);background:rgba(0,234,255,.1);
+ color:white;box-shadow:0 0 18px rgba(0,234,255,.12)
+}
+.option input{display:none}
+.submit{
+ width:100%;margin-top:8px;padding:16px;border:0;border-radius:15px;
+ background:linear-gradient(90deg,var(--blue),var(--cyan));color:#001018;
+ font-weight:800;font-size:16px;cursor:pointer;letter-spacing:.5px
+}
+.submit:hover{filter:brightness(1.1)}
+#success{display:none;text-align:center;padding:28px 8px}
+.check{font-size:48px;color:var(--cyan)}
+.small{color:var(--muted);font-size:13px;text-align:center;margin-top:18px;line-height:1.5}
+.footer{text-align:center;color:#668096;font-size:12px;padding:25px}
+</style>
+</head>
+<body>
+<div class="container">
+  <header class="header">
+    <div class="badge">Industrial Safety • AI • Robotics</div>
+    <h1>FORGE<span>GUARD</span> AI</h1>
+    <div class="subtitle">Your feedback helps us make hazardous-zone inspection safer, smarter and more reliable.</div>
+  </header>
+
+  <main class="card" id="formCard">
+    <div class="question">
+      <h2>01 · How would you rate ForgeGuard AI?</h2>
+      <div class="options" data-name="rating">
+        <label class="option"><input type="radio" name="rating" value="Excellent">⭐ Excellent</label>
+        <label class="option"><input type="radio" name="rating" value="Very Good">🚀 Very Good</label>
+        <label class="option"><input type="radio" name="rating" value="Good">👍 Good</label>
+        <label class="option"><input type="radio" name="rating" value="Needs Improvement">🔧 Needs Improvement</label>
+      </div>
+    </div>
+
+    <div class="question">
+      <h2>02 · Which feature impressed you the most?</h2>
+      <div class="options">
+        <label class="option"><input type="radio" name="feature" value="Hazard Detection">🔥 Hazard Detection</label>
+        <label class="option"><input type="radio" name="feature" value="AI Monitoring">🧠 AI Monitoring</label>
+        <label class="option"><input type="radio" name="feature" value="Navigation">🧭 Navigation</label>
+        <label class="option"><input type="radio" name="feature" value="Robotic Arm">🦾 Robotic Arm</label>
+        <label class="option"><input type="radio" name="feature" value="Voice Alerts">🔊 Voice Alerts</label>
+      </div>
+    </div>
+
+    <div class="question">
+      <h2>03 · How useful could this be in an industrial environment?</h2>
+      <div class="options">
+        <label class="option"><input type="radio" name="useful" value="Extremely Useful">⚡ Extremely Useful</label>
+        <label class="option"><input type="radio" name="useful" value="Very Useful">✓ Very Useful</label>
+        <label class="option"><input type="radio" name="useful" value="Somewhat Useful">Somewhat Useful</label>
+        <label class="option"><input type="radio" name="useful" value="Not Sure">Not Sure</label>
+      </div>
+    </div>
+
+    <div class="question">
+      <h2>04 · Would you like to see ForgeGuard developed further?</h2>
+      <div class="options">
+        <label class="option"><input type="radio" name="future" value="Definitely">🚀 Definitely</label>
+        <label class="option"><input type="radio" name="future" value="Maybe">Maybe</label>
+        <label class="option"><input type="radio" name="future" value="Not Sure">Not Sure</label>
+      </div>
+    </div>
+
+    <button class="submit" onclick="submitFeedback()">SUBMIT FEEDBACK →</button>
+    <div class="small">No personal information is required.</div>
+  </main>
+
+  <section class="card" id="success">
+    <div class="check">✓</div>
+    <h2>THANK YOU!</h2>
+    <p class="subtitle">Your feedback has been recorded on this device.</p>
+    <p class="small">For a real exhibition-wide response database, connect the form to Google Forms, Sheets, or another web backend.</p>
+  </section>
+
+  <div class="footer">Built by the ForgeGuard AI team · MSMSV Jaipur</div>
+</div>
+
+<script>
+document.querySelectorAll('.option').forEach(label=>{
+  label.addEventListener('click',()=>{
+    const group=label.parentElement;
+    group.querySelectorAll('.option').forEach(x=>x.classList.remove('selected'));
+    label.classList.add('selected');
+  });
+});
+
+function submitFeedback(){
+  const groups=['rating','feature','useful','future'];
+  const missing=groups.some(g=>!document.querySelector('input[name="'+g+'"]:checked'));
+  if(missing){
+    alert('Please select one option in each section.');
+    return;
+  }
+  const data={};
+  groups.forEach(g=>data[g]=document.querySelector('input[name="'+g+'"]:checked').value);
+  localStorage.setItem('forgeguardFeedback',JSON.stringify(data));
+  document.getElementById('formCard').style.display='none';
+  document.getElementById('success').style.display='block';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+</script>
+</body>
+</html>
